@@ -32,4 +32,3 @@ This project is designed as a basic demonstration of **canvas drawing**, **React
 - Node.js (v16 or later recommended)
 - npm or yarn
 - Modern web browser (Chrome, Edge, Firefox)
-
