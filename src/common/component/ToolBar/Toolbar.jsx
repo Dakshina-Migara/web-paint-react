@@ -1,39 +1,67 @@
 import React from "react";
-import { Box, Button, Slider, MenuItem, Select, Typography } from "@mui/material";
+import { Box, Button, Slider, TextField, Typography } from "@mui/material";
 
-const Toolbar = ({ color, setColor, brushSize, setBrushSize }) => {
+export default function Toolbar({ color, setColor, brushSize, setBrushSize, opacity, setOpacity }) {
     return (
-        <Box sx={{ display: "flex", gap: 2, mb: 2, alignItems: "center" }}>
-            {/* Color Picker */}
-            <Select value={color} onChange={(e) => setColor(e.target.value)}>
-                <MenuItem value="#000000">Black</MenuItem>
-                <MenuItem value="#ff0000">Red</MenuItem>
-                <MenuItem value="#00ff00">Green</MenuItem>
-                <MenuItem value="#0000ff">Blue</MenuItem>
-                <MenuItem value="#ffff00">Yellow</MenuItem>
-            </Select>
-
-            {/* Brush Size */}
-            <Box sx={{ width: 200 }}>
-                <Typography gutterBottom>Brush Size</Typography>
-                <Slider
-                    value={brushSize}
-                    onChange={(e, value) => setBrushSize(value)}
-                    min={1}
-                    max={50}
-                />
-            </Box>
-
-            {/* Clear Button */}
-            <Button
-                variant="contained"
-                color="secondary"
-                onClick={() => window.dispatchEvent(new Event("clearCanvas"))}
+        <Box
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                mb: 2,
+            }}
+        >
+            <Box
+                sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                    gap: { xs: "20px", sm: "30px", md: "50px" },
+                    justifyContent: "center",
+                }}
             >
-                Clear
-            </Button>
+                <Box>
+                    <Typography gutterBottom>Brush Color</Typography>
+                    <TextField
+                        type="color"
+                        value={color}
+                        onChange={(e) => setColor(e.target.value)}
+                        sx={{ width: 50, height: 40, padding: 0 }}
+                    />
+                </Box>
+
+                <Box sx={{ minWidth: { xs: 100, sm: 150 } }}>
+                    <Typography gutterBottom>Brush Size</Typography>
+                    <Slider
+                        value={brushSize}
+                        onChange={(e, value) => setBrushSize(value)}
+                        min={1}
+                        max={50}
+                        sx={{ width: "100%" }}
+                    />
+                </Box>
+
+                <Box sx={{ minWidth: { xs: 100, sm: 150 } }}>
+                    <Typography gutterBottom>Brush Opacity</Typography>
+                    <Slider
+                        value={opacity}
+                        onChange={(e, value) => setOpacity(value)}
+                        min={0.1}
+                        max={1}
+                        step={0.05}
+                        sx={{ width: "100%" }}
+                    />
+                </Box>
+
+                <Box>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => window.dispatchEvent(new Event("clearCanvas"))}
+                    >
+                        Eraser
+                    </Button>
+                </Box>
+            </Box>
         </Box>
     );
-};
-
-export default Toolbar;
+}
