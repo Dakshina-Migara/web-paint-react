@@ -33,6 +33,3 @@ This project is designed as a basic demonstration of **canvas drawing**, **React
 - npm or yarn
 - Modern web browser (Chrome, Edge, Firefox)
 
----
-
-## 📂 Project Structure
